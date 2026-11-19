@@ -1,4 +1,4 @@
-// Mobile menu
+// Mobile menu toggle
 const menuIcon = document.querySelector('#menu-icon');
 const navLinks = document.querySelector('.nav-links');
 
@@ -8,6 +8,7 @@ if (menuIcon && navLinks) {
     });
 }
 
+// Dark mode theme toggle
 const themeBtn = document.getElementById('theme-btn');
 
 if(themeBtn) {
@@ -30,6 +31,7 @@ const projectCards = document.querySelectorAll('.project-card[data-type]');
 let currentImages = [];
 let currentIndex = 0;
 
+// Render active gallery image with wrap-around navigation buttons
 function renderGalleryImage() {
     modalBody.innerHTML = `
         <button class="gallery-btn prev" aria-label="Previous image">&#10094;</button>
@@ -50,6 +52,7 @@ function renderGalleryImage() {
 }
         if (modal && modalTitle && modalBody && modalClose) {
 document.querySelectorAll('.project-card').forEach(card => {
+        // Play silent video preview when hovering over card reset when leave
         const previewVideo = card.querySelector('video');
         if (previewVideo) {
             card.addEventListener('mouseenter', () => previewVideo.play());
@@ -59,7 +62,7 @@ document.querySelectorAll('.project-card').forEach(card => {
         });
 
     }    
-
+    // Open modal with gallery or video player
     card.addEventListener('click', () => {
         const type = card.dataset.type;
             if (!type) return;
@@ -78,6 +81,7 @@ document.querySelectorAll('.project-card').forEach(card => {
         });
     });
 
+    // Close modal when clicking outside dialog content
     function closeModal() {
         modal.close();
         modalBody.innerHTML = '';
@@ -89,6 +93,7 @@ document.querySelectorAll('.project-card').forEach(card => {
         if (e.target === modal) closeModal();
     });
 
+    // Enable Left and right arrow key navigation while gallery modal is open
     document.addEventListener('keydown', (e) => {
         if (!modal.open || currentImages.length === 0) return;
         if (e.key === 'ArrowRight') {

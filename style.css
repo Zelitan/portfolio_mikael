@@ -419,32 +419,71 @@ li a:hover::before{
     background: black;
 }
 /*--Project modal end--*/
-/*--STYLE FOR PROJECTS SECTION END--*/
+/*--STYLE FOR PROJECTS SECTION END--*
+
+
+/*--DARKMODE STYLES--*/
 
 #theme-btn {
     color: white;
     border-color: white;
 }
 
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .btn {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+body.dark-mode .grid-card,
+body.dark-mode .project-card {
+    border-color: #ffffff;
+}
+
+body.dark-mode .grid-card:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+body.dark-mode .socials a,
+body.dark-mode .socials i {
+    color: #ffffff;
+}
+/* --DARKMODE STYLES END-- */
+
+/* --RESPONSIVE DESIGN / MEDIA QUERIES-- */
+
+/* Tablet and laptop with max-width 1024px */
 @media (max-width: 1024px) {
     header {
         gap: 2rem;
         padding: 1rem 1.5rem;
     }
 
+/* Stacking layouts vertically for about and experience sections */    
     .about .about-container,
     .experience-info {
         flex-direction: column;
         gap: 3rem;
         text-align: center;
     }
-
+/* Center-align contents of experience card */
     .grid-card {
         align-items: center;
         text-align: center;
     }
 }
 
+/* Mobile devices with max-width 768px */
 @media (max-width: 768px) {
     section {
         padding:8rem 6% 4rem;
@@ -452,7 +491,7 @@ li a:hover::before{
     .section-title {
         font-size: 2.8rem;
     }
-
+/* Compact header bar to fit screen width on smaller devices */
     header {
         width: 90%;
         max-width: 92vw;
@@ -472,7 +511,7 @@ li a:hover::before{
         font-size: 0.75rem;
         flex-shrink: 0;
     }
-
+/* Show hamburger menu icon */
     #menu-icon {
         display: block;
         cursor: pointer;
@@ -481,6 +520,7 @@ li a:hover::before{
         height: 24px;
     }
 
+/* Dropdown nav menu only active when toggled via JavaScript*/
     .nav-links {
         position: absolute;
         top: 115%;
@@ -499,6 +539,7 @@ li a:hover::before{
         display: flex;
     }
 
+/* Switch grids and button groups to single-column on smaller screens */    
     .grid,
     .projects-grid {
         grid-template-columns: 1fr;
@@ -509,3 +550,4 @@ li a:hover::before{
         width: 100%;
     }
 }
+/* --RESPONSIVE DESIGN END-- */
