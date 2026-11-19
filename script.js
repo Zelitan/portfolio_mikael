@@ -9,23 +9,12 @@ if (menuIcon && navLinks) {
 }
 
 const themeBtn = document.getElementById('theme-btn');
-let isDarkMode = false;
 
-
-
-if (themeBtn) {
+if(themeBtn) {
     themeBtn.addEventListener('click', () => {
-        isDarkMode = !isDarkMode;
-
-        if (isDarkMode) {
-            document.body.style.backgroundColor = '#121212';
-            document.body.style.color = '#ffffff';
-            themeBtn.textContent = 'Light Mode';
-        } else {
-            document.body.style.backgroundColor = '#ffffff'
-            document.body.style.color = '#000000';
-            themeBtn.textContent = 'Dark Mode';
-        }
+        document.body.classList.toggle('dark-mode');
+        const isDarkmode = document.body.classList.contains('dark-mode');
+        themeBtn.textContent = isDarkmode ? 'Light Mode' : 'Dark Mode';
     });
 }
 
