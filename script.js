@@ -1,0 +1,113 @@
+// Mobile menu
+const menuIcon = document.querySelector('#menu-icon');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuIcon && navLinks) {
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active')
+    });
+}
+
+const themeBtn = document.getElementById('theme-btn');
+let isDarkMode = false;
+
+
+
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+
+        if (isDarkMode) {
+            document.body.style.backgroundColor = '#121212';
+            document.body.style.color = '#ffffff';
+            themeBtn.textContent = 'Light Mode';
+        } else {
+            document.body.style.backgroundColor = '#ffffff'
+            document.body.style.color = '#000000';
+            themeBtn.textContent = 'Dark Mode';
+        }
+    });
+}
+
+
+//Project modal for img gallery and video preview
+
+const modal = document.getElementById('project-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+const projectCards = document.querySelectorAll('.project-card[data-type]');
+
+let currentImages = [];
+let currentIndex = 0;
+
+function renderGalleryImage() {
+    modalBody.innerHTML = `
+        <button class="gallery-btn prev" aria-label="Previous image">&#10094;</button>
+        <img src="${currentImages[currentIndex]}" alt="Reportage image ${currentIndex + 1}">
+        <button class="gallery-btn next" aria-label="Next image">&#10095;</button>
+        <div class="gallery-counter">${currentIndex + 1} / ${currentImages.length}</div>
+    `;
+    
+    modalBody.querySelector('.prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        renderGalleryImage();
+    });
+
+    modalBody.querySelector('.next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        renderGalleryImage();
+    });
+}
+        if (modal && modalTitle && modalBody && modalClose) {
+document.querySelectorAll('.project-card').forEach(card => {
+        const previewVideo = card.querySelector('video');
+        if (previewVideo) {
+            card.addEventListener('mouseenter', () => previewVideo.play());
+            card.addEventListener('mouseleave', () => {
+                previewVideo.pause();
+                previewVideo.load();
+        });
+
+    }    
+
+    card.addEventListener('click', () => {
+        const type = card.dataset.type;
+            if (!type) return;
+
+            modalTitle.textContent = card.dataset.title || '';
+
+            if (type === 'gallery') {
+                currentImages = card.dataset.images.split(',').map(s => s.trim());
+                currentIndex = 0;
+                renderGalleryImage();
+            } else if (type === 'video') {
+                modalBody.innerHTML = `<video src="${card.dataset.src}" controls autoplay></video>`;
+            }
+            
+            modal.showModal();
+        });
+    });
+
+    function closeModal() {
+        modal.close();
+        modalBody.innerHTML = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!modal.open || currentImages.length === 0) return;
+        if (e.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            renderGalleryImage();
+        } else if (e.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            renderGalleryImage();
+        }
+    });
+}
