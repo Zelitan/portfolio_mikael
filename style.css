@@ -134,6 +134,7 @@ li a:hover::before{
 {
     border-radius: 3rem;
     padding: 0.5rem 1.5rem;
+    color: black;
     background-color: transparent;
     border: 2px solid black;
     cursor: pointer;
@@ -145,18 +146,27 @@ li a:hover::before{
     background-color:black;
     color: white;
 }
-.socials{
-   display: flex;
-   gap: 2rem;
+.socials {
+    display: flex;
+    gap: 2rem;
 }
-.socials i{
+
+.socials a {
+    color: black;
+}
+
+.socials i,
+.socials svg {
     font-size: 2.5rem;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.socials i:hover{
+
+.socials i:hover,
+.socials svg:hover {
     transform: scale(1.1);
 }
+
 /*--STYLE FOR ABOUT SECTION END--*/
 
 /*--STYLE FOR EXPERIENCE SECTION--*/
@@ -249,7 +259,7 @@ li a:hover::before{
     transition: transform 0.3s ease-in-out;
 }
 
-/* Bilden eller videon fyller hela kortet i bakgrunden */
+/* Background image or video fills entire card */
 .project-card img,
 .project-card video {
     position: absolute;
@@ -261,19 +271,19 @@ li a:hover::before{
     transition: transform 0.4s ease-in-out;
 }
 
-/* Frostat glaslager som täcker bilden som standard */
+/* Frosted glass overlay covering the media by default */
 .project-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35); /* Mörkt tonat glas för hög läsbarhet */
+    background: rgba(0, 0, 0, 0.35); /* Dark tinted glass for better text contrast */
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     z-index: 1;
     transition: opacity 0.35s ease-in-out;
 }
 
-/* Texten ligger överst */
+/* Card text positioned above overlay */
 .project-card h3,
 .project-card p {
     position: relative;
@@ -294,7 +304,7 @@ li a:hover::before{
     line-height: 1.5;
 }
 
-/* Hover: Glaseffekten försvinner, bilden zoomar lätt och blir helt klar */
+/* Hover: Remove glass overlay and slightly zoom media and reveal image */
 .project-card:hover {
     transform: translateY(-10px) scale(1.02);
 }
@@ -307,14 +317,14 @@ li a:hover::before{
     transform: scale(1.05);
 }
 
-/* Valfritt: Tonar ner texten vid hover så fotografiet syns helt ostört */
+/* Fade out text on hover to display media without distractions */
 .project-card:hover h3,
 .project-card:hover p {
     opacity: 0;
     transform: translateY(10px);
 }
 
-/*--Projects modal for card effects and hoover playback--*/
+/*--Projects modal for card effects and hover playback--*/
 .project-modal {
     margin: auto;
     border: none;
@@ -419,8 +429,7 @@ li a:hover::before{
     background: black;
 }
 /*--Project modal end--*/
-/*--STYLE FOR PROJECTS SECTION END--*
-
+/*--STYLE FOR PROJECTS SECTION END--*/
 
 /*--DARKMODE STYLES--*/
 
