@@ -11,14 +11,27 @@ if (menuIcon && navLinks) {
 // Dark mode theme toggle
 const themeBtn = document.getElementById('theme-btn');
 
-if(themeBtn) {
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const isDarkmode = document.body.classList.contains('dark-mode');
-        themeBtn.textContent = isDarkmode ? 'Light Mode' : 'Dark Mode';
-    });
+function applyTheme(isDark) {
+    document.body.classList.toggle('dark-mode', isDark);
+    if (themeBtn) {
+        themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode'
+    }
 }
 
+// Reverts saved theme when page reload
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    applyTheme(true);
+}
+
+// Switch and save by clicking
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        const isDark = !document.body.classList.contains('dark-mode');
+        applyTheme(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+}
 
 //Project modal for img gallery and video preview
 
