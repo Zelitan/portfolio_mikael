@@ -110,7 +110,7 @@ li a:hover::before{
     justify-content: center;
     gap: 1.5rem;
 }
-.info-box h3{
+.info-box .greeting{
     font-size: 1.8rem;
     font-weight: 600;
 }
@@ -119,7 +119,7 @@ li a:hover::before{
     font-weight: 600;
     line-height: 1.2;
 }
-.info-box span{
+.info-box .role{
     background: linear-gradient(to right, #2c8b57, #1a535c);
     background-clip: text;
     color: transparent;
@@ -464,7 +464,8 @@ body.dark-mode .grid-card:hover {
 }
 
 body.dark-mode .socials a,
-body.dark-mode .socials i {
+body.dark-mode .socials i,
+body.dark-mode .socials svg {
     color: #ffffff;
 }
 /* --DARKMODE STYLES END-- */
